@@ -26,8 +26,8 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
             if let minHeight = minHeight {
                 self.minHeight = minHeight
             }
-            if let minWeight = minWeight {
-                self.minWidth = minWeight
+            if let minWidth = minWidth {
+                self.minWidth = minWidth
             }
             if let tintColor = tintColor {
                 self.tintColor = tintColor
