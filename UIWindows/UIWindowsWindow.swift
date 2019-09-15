@@ -20,9 +20,9 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
         var tintColor: UIColor = .systemBlue
         var cornerAdjustRadius: CGFloat = 20.0
         
-        init(){}
+        public init(){}
         
-        init(minHeight: CGFloat?, minWidth: CGFloat?, tintColor: UIColor?, cornerAdjustRadius: CGFloat?) {
+        public init(minHeight: CGFloat?, minWidth: CGFloat?, tintColor: UIColor?, cornerAdjustRadius: CGFloat?) {
             if let minHeight = minHeight {
                 self.minHeight = minHeight
             }
