@@ -16,18 +16,18 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
     
     public struct Config {
         var minHeight: CGFloat = 300.0
-        var minWeight: CGFloat = 200.0
+        var minWidth: CGFloat = 200.0
         var tintColor: UIColor = .systemBlue
         var cornerAdjustRadius: CGFloat = 20.0
         
         init(){}
         
-        init(minHeight: CGFloat?, minWeight: CGFloat?, tintColor: UIColor?, cornerAdjustRadius: CGFloat?) {
+        init(minHeight: CGFloat?, minWidth: CGFloat?, tintColor: UIColor?, cornerAdjustRadius: CGFloat?) {
             if let minHeight = minHeight {
                 self.minHeight = minHeight
             }
             if let minWeight = minWeight {
-                self.minWeight = minWeight
+                self.minWidth = minWeight
             }
             if let tintColor = tintColor {
                 self.tintColor = tintColor
@@ -159,7 +159,7 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
         
         self.childVC = childVC
             
-        super.init(frame: CGRect(x: 10, y: 10, width: self.config.minWeight, height: self.config.minHeight))
+        super.init(frame: CGRect(x: 10, y: 10, width: self.config.minWidth, height: self.config.minHeight))
         
         self.addSubview(containerView)
         self.backgroundColor = .clear
@@ -287,13 +287,13 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
                 }
             }
             
-            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWeight {
+            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWidth {
                 self.widthConstant.constant = nWidth
             } else {
                 if nWidth > parentVC.view.frame.width {
                     offsetX = oWidth - parentVC.view.frame.width
                 } else {
-                    offsetX = oWidth - self.config.minWeight
+                    offsetX = oWidth - self.config.minWidth
                 }
             }
             manager?.handlePan(changed: self, offsetX: offsetX, offsetY: offsetY)
@@ -332,7 +332,7 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
                 }
             }
             
-            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWeight {
+            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWidth {
                 self.widthConstant.constant = nWidth
             }
             manager?.handlePan(changed: self, offsetX: 0, offsetY: offsetY)
@@ -366,13 +366,13 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
                 self.heightConstant.constant = nHeight
             }
             
-            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWeight {
+            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWidth {
                 self.widthConstant.constant = nWidth
             } else {
                 if nWidth > parentVC.view.frame.width {
                     offsetX = oWidth - parentVC.view.frame.width
                 } else {
-                    offsetX = oWidth - self.config.minWeight
+                    offsetX = oWidth - self.config.minWidth
                 }
             }
             manager?.handlePan(changed: self, offsetX: offsetX, offsetY: 0)
@@ -404,7 +404,7 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
                 self.heightConstant.constant = nHeight
             }
             
-            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWeight {
+            if nWidth < parentVC.view.frame.width, nWidth > self.config.minWidth {
                 self.widthConstant.constant = nWidth
             }
             
