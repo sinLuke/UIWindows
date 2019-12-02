@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "UIWindows"
-  spec.version      = "1.0.0"
+  spec.version      = "2.0.0"
   spec.summary      = "A Interface that allow multiple view controllers show on screen like multiple windows."
 
   # This description is used to generate tags and improve search results.

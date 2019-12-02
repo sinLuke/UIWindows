@@ -14,7 +14,9 @@ enum LayoutStyle {
     case fill(leading: CGFloat, trailing: CGFloat)
 }
 
-func fixInto(this: UIView, view: UIView, horizontal: LayoutStyle, vertical: LayoutStyle) {
+
+
+func fix(this: UIView, into view: UIView, horizontal: LayoutStyle, vertical: LayoutStyle) {
     
     this.translatesAutoresizingMaskIntoConstraints = false
     

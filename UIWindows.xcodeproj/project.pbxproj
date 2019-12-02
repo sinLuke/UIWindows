@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02B85D3823954D98002188C4 /* UIWindowsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B85D3723954D98002188C4 /* UIWindowsConfig.swift */; };
 		A3261424232E033700D2740B /* UIWindowsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3261420232E033700D2740B /* UIWindowsNavigationController.swift */; };
 		A3261425232E033700D2740B /* UIWindowsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3261421232E033700D2740B /* UIWindowsWindow.swift */; };
 		A3261426232E033700D2740B /* UIWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3261422232E033700D2740B /* UIWindowView.swift */; };
-		A3261427232E033700D2740B /* UIWindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3261423232E033700D2740B /* UIWindowsManager.swift */; };
+		A3261427232E033700D2740B /* UIDesktop.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3261423232E033700D2740B /* UIDesktop.swift */; };
 		A3F054DF232DE39E00B0BC8C /* UIWindows.h in Headers */ = {isa = PBXBuildFile; fileRef = A3F054DD232DE39E00B0BC8C /* UIWindows.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02B85D3723954D98002188C4 /* UIWindowsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowsConfig.swift; sourceTree = "<group>"; };
 		A3261420232E033700D2740B /* UIWindowsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowsNavigationController.swift; sourceTree = "<group>"; };
 		A3261421232E033700D2740B /* UIWindowsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowsWindow.swift; sourceTree = "<group>"; };
 		A3261422232E033700D2740B /* UIWindowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowView.swift; sourceTree = "<group>"; };
-		A3261423232E033700D2740B /* UIWindowsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowsManager.swift; sourceTree = "<group>"; };
+		A3261423232E033700D2740B /* UIDesktop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDesktop.swift; sourceTree = "<group>"; };
 		A3F054DA232DE39E00B0BC8C /* UIWindows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIWindows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3F054DD232DE39E00B0BC8C /* UIWindows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIWindows.h; sourceTree = "<group>"; };
 		A3F054DE232DE39E00B0BC8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,12 +56,13 @@
 		A3F054DC232DE39E00B0BC8C /* UIWindows */ = {
 			isa = PBXGroup;
 			children = (
-				A3261423232E033700D2740B /* UIWindowsManager.swift */,
+				A3261423232E033700D2740B /* UIDesktop.swift */,
 				A3261420232E033700D2740B /* UIWindowsNavigationController.swift */,
 				A3261421232E033700D2740B /* UIWindowsWindow.swift */,
 				A3261422232E033700D2740B /* UIWindowView.swift */,
 				A3F054DD232DE39E00B0BC8C /* UIWindows.h */,
 				A3F054DE232DE39E00B0BC8C /* Info.plist */,
+				02B85D3723954D98002188C4 /* UIWindowsConfig.swift */,
 			);
 			path = UIWindows;
 			sourceTree = "<group>";
@@ -145,9 +148,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3261424232E033700D2740B /* UIWindowsNavigationController.swift in Sources */,
-				A3261427232E033700D2740B /* UIWindowsManager.swift in Sources */,
+				A3261427232E033700D2740B /* UIDesktop.swift in Sources */,
 				A3261425232E033700D2740B /* UIWindowsWindow.swift in Sources */,
 				A3261426232E033700D2740B /* UIWindowView.swift in Sources */,
+				02B85D3823954D98002188C4 /* UIWindowsConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +284,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RW646P4KDZ;
+				DEVELOPMENT_TEAM = 6WV427XX4L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -291,6 +295,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ios.sinLuke.UIWindows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -306,7 +311,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RW646P4KDZ;
+				DEVELOPMENT_TEAM = 6WV427XX4L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -317,6 +322,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ios.sinLuke.UIWindows;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

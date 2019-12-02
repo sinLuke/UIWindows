@@ -7,7 +7,7 @@ A framework that makes multi-windows interface possible on iOS
 ### CocoaPods
 
 ```ruby
-pod 'UIWindows', :git => 'https://github.com/sinLuke/UIWindows.git', :tag => '1.0.0'
+pod 'UIWindows', :git => 'https://github.com/sinLuke/UIWindows.git', :tag => '2.0.0'
 ```
 
 ### Usage
@@ -18,7 +18,7 @@ pod 'UIWindows', :git => 'https://github.com/sinLuke/UIWindows.git', :tag => '1.
    import UIWindows
    ```
 
-2. Create a WindowsManager to manage all the windows we are going to create.
+2. Create a WindowsManager to manage all the windows we are going to create. Make sure do that after the metrics of your contoller's view been calculated (e.g. do it in viewDidAppear)
 
    ```Swift
    manager = UIWindowsManager(on: containerViewController)
