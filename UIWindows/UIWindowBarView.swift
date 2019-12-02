@@ -16,10 +16,6 @@ class UIWindowBarView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
-        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
-        
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
@@ -28,6 +24,9 @@ class UIWindowBarView: UIView {
         self.addSubview(blurEffectView)
         self.addSubview(closeButton)
         self.addSubview(fullScreenButton)
+        
+        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
+        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
         
     }
     
