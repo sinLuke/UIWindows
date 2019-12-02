@@ -94,19 +94,12 @@ public class UIWindowsWindow: UIView {
         
         fix(this: windowBarView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
         
-        if let childNVC = childVC as? UINavigationController {
-            containerView.addSubview(childNVC.view)
-            
-            fix(this: childNVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
-            
-        } else {
-            navigationVC = UIWindowsNavigationController(rootViewController: childVC)
-            containerView.addSubview(navigationVC.view)
-            
-            fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
-            
-            navigationVC.windowDelegate = self
-        }
+        navigationVC = UIWindowsNavigationController(rootViewController: childVC)
+        containerView.addSubview(navigationVC.view)
+        
+        fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
+        
+        navigationVC.windowDelegate = self
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan))
 
