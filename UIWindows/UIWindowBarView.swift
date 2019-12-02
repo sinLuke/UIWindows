@@ -22,23 +22,20 @@ class UIWindowBarView: UIView {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
         
-        let backgroundView = UIView(frame: self.bounds)
-        backgroundView.backgroundColor = backgounrColor
-        
         self.addSubview(blurEffectView)
-        blurEffectView.addSubview(backgroundView)
-        backgroundView.addSubview(closeButton)
-        backgroundView.addSubview(fullScreenButton)
+        blurEffectView.contentView.backgroundColor = backgounrColor
+        blurEffectView.contentView.addSubview(closeButton)
+        blurEffectView.contentView.addSubview(fullScreenButton)
         
-        backgroundView.layer.borderColor = UIColor.systemGray3.cgColor
-        backgroundView.layer.borderWidth = 1/UIScreen.main.scale
+        blurEffectView.contentView.layer.borderColor = UIColor.systemGray3.cgColor
+        blurEffectView.contentView.layer.borderWidth = 1/UIScreen.main.scale
         
         fix(this: blurEffectView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
         
-        fix(this: backgroundView, into: blurEffectView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
+        fix(this: blurEffectView.contentView, into: blurEffectView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
         
-        fix(this: closeButton, into: backgroundView, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
-        fix(this: fullScreenButton, into: backgroundView, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
+        fix(this: closeButton, into: blurEffectView.contentView, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
+        fix(this: fullScreenButton, into: blurEffectView.contentView, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailinblurEffectView.contentViewg: -7.5, intrinsic: 18))
         
     }
     
