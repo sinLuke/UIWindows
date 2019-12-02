@@ -79,7 +79,7 @@ public class UIWindowsWindow: UIView {
 
         fix(this: containerView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
         
-        containerView.backgroundColor = .systemBackground
+        containerView.backgroundColor = .clear
         containerView.clipsToBounds = true
         containerView.layer.cornerRadius = 8
         containerView.layer.borderColor = UIColor.systemGray3.cgColor
