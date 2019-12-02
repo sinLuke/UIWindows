@@ -18,8 +18,8 @@ class UIWindowBarView: UIView {
     }
     */
     
-    convenience init() {
-        self.init()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.backgroundColor = .clear
         addGradient()
     }
