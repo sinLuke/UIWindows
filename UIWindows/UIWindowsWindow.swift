@@ -87,9 +87,9 @@ public class UIWindowsWindow: UIView {
         self.layer.shadowRadius = 30
         self.layer.shadowOpacity = 0.5
         
-        containerView.addSubview(windowBarView)
+        self.addSubview(windowBarView)
         
-        fix(this: windowBarView, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
+        fix(this: windowBarView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
         
         if let childNVC = childVC as? UINavigationController {
             containerView.addSubview(childNVC.view)
