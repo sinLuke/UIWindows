@@ -24,6 +24,11 @@ public class UIWindowsWindow: UIView {
     var heightConstant: NSLayoutConstraint!
     var widthConstant: NSLayoutConstraint!
     
+    var topGapBackup: CGFloat?
+    var leftGapBackup: CGFloat?
+    var heightConstantBackup: CGFloat?
+    var widthConstantBackup: CGFloat?
+    
     var oWidth: CGFloat = 0
     var oHeight: CGFloat = 0
     
@@ -163,21 +168,21 @@ public class UIWindowsWindow: UIView {
     
     private var fullScreen: Bool = false {
         didSet {
-                    
-            self.frame = CGRect(x: self.leftGap.constant, y: self.topGap.constant, width: self.widthConstant.constant, height: self.heightConstant.constant)
-            
             if fullScreen {
-                print("fullScreen \(desktop?.view?.safeAreaInsets.top)")
-//                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: self.config.barHeight + (desktop?.view?.safeAreaInsets.top ?? 0), trailing: 0))
-                
-                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight + (desktop?.view?.safeAreaInsets.top ?? 0), trailing: self.config.windowEdgeWidth))
-                fix(this: windowBarView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight + (desktop?.view?.safeAreaInsets.top ?? 0)))
+                topGapBackup = topGap.constant
+                leftGapBackup = leftGap.constant
+                heightConstantBackup = heightConstant.constant
+                widthConstantBackup = widthConstant.constant
+                topGap.constant = (desktop?.view?.safeAreaInsets.top ?? 0)
+                leftGap.constant = 0
+                heightConstant.constant = desktop?.view?.frame.width ?? 300
+                widthConstant.constant = desktop?.view?.frame.height ?? 400 - (desktop?.view?.safeAreaInsets.top ?? 0)
             } else {
-                
-                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
-                fix(this: windowBarView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
+                topGap.constant = topGapBackup ?? 0
+                leftGap.constant = leftGapBackup ?? 0
+                heightConstant.constant = heightConstantBackup ?? 300
+                widthConstant.constant = widthConstantBackup ?? 400
             }
-            
             
             UIView.animate(withDuration: 0.3) {
                 self.layoutSubviews()
