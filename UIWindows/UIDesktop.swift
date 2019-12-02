@@ -80,8 +80,8 @@ public class UIDesktop: UIDesktopDelegate {
         window.desktop = self
         window.translatesAutoresizingMaskIntoConstraints = false
 
-        window.topGap = window.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: CGFloat(10*self.windows.count))
-        window.leftGap = window.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(10*self.windows.count))
+        window.topGap = window.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(10*self.windows.count))
+        window.leftGap = window.leftAnchor.constraint(equalTo: view.leftAnchor, constant: CGFloat(10*self.windows.count))
         window.heightConstant = window.heightAnchor.constraint(equalToConstant: 300)
         window.widthConstant = window.widthAnchor.constraint(equalToConstant: 200)
 

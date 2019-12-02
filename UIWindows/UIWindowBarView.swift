@@ -23,8 +23,8 @@ class UIWindowBarView: UIView {
             self.addSubview(fullScreenButton)
         }
         self.backgroundColor = UIColor.init(displayP3Red: 226/255, green: 226/255, blue: 226/255, alpha: 1.0)
-        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: 7.5, intrinsic: 18))
-        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: 7.5, intrinsic: 18))
+        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
+        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
     }
     
     required init?(coder: NSCoder) {
