@@ -35,7 +35,7 @@ class UIWindowBarView: UIView {
         fix(this: blurEffectView.contentView, into: blurEffectView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
         
         fix(this: closeButton, into: blurEffectView.contentView, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
-        fix(this: fullScreenButton, into: blurEffectView.contentView, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailinblurEffectView.contentViewg: -7.5, intrinsic: 18))
+        fix(this: fullScreenButton, into: blurEffectView.contentView, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
         
     }
     
