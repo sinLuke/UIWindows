@@ -61,8 +61,6 @@ class UIWindowBarView: UIView {
             self.addSubview(fullScreenButton)
         }
         
-        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 8, intrinsic: 12), vertical: .fixLeading(leading: 5, intrinsic: 12))
-        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 8, intrinsic: 12), vertical: .fixLeading(leading: 5, intrinsic: 12))
         gradient.frame = self.bounds
     }
 
@@ -77,6 +75,9 @@ class UIWindowBarView: UIView {
         if gradient.superlayer == nil {
             layer.insertSublayer(gradient, at: 0)
         }
+        
+        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 8, intrinsic: 12), vertical: .fixLeading(leading: 5, intrinsic: 12))
+        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 28, intrinsic: 12), vertical: .fixLeading(leading: 5, intrinsic: 12))
     }
     
     @objc func closeWindow(_ sander: UIButton) {
