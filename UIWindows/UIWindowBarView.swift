@@ -18,6 +18,16 @@ class UIWindowBarView: UIView {
     }
     */
     
+    init() {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.backgroundColor = .clear
+        addGradient()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func addGradient(){
         let gradient = CAGradientLayer()
 
