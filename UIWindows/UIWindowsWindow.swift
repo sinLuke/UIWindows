@@ -73,6 +73,8 @@ public class UIWindowsWindow: UIView {
         
         self.addSubview(containerView)
         self.backgroundColor = .clear
+        containerView.addSubview(windowBarView)
+        windowBarView.windowDelegate = self
         self.setUpCornerGestureView()
 
         fix(this: containerView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
@@ -88,7 +90,7 @@ public class UIWindowsWindow: UIView {
         self.layer.shadowRadius = 30
         self.layer.shadowOpacity = 0.5
         
-        containerView.addSubview(windowBarView)
+        
         
         fix(this: windowBarView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
         

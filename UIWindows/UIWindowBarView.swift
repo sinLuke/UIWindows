@@ -18,7 +18,7 @@ class UIWindowBarView: UIView {
     
     let closeButton = { () -> UIButton in
         
-        let redBorder = UIColor.init(displayP3Red: 204/255, green: 204/255, blue: 204/255, alpha: 1.0)
+        let redBorder = UIColor.init(displayP3Red: 226/255, green: 73/255, blue: 64/255, alpha: 1.0)
         let redFill = UIColor.init(displayP3Red: 255/255, green: 97/255, blue: 89/255, alpha: 1.0)
         
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 12, height: 12))
