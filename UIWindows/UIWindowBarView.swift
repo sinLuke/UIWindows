@@ -16,17 +16,29 @@ class UIWindowBarView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        let backgounrColor = UIColor.init(displayP3Red: 206/255, green: 206/255, blue: 206/255, alpha: 0.3)
+        
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        let backgroundView = UIView(frame: self.bounds)
+        backgroundView.backgroundColor = backgounrColor
         
         self.addSubview(blurEffectView)
-        self.addSubview(closeButton)
-        self.addSubview(fullScreenButton)
+        blurEffectView.addSubview(backgroundView)
+        backgroundView.addSubview(closeButton)
+        backgroundView.addSubview(fullScreenButton)
         
-        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
-        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
+        backgroundView.layer.borderColor = UIColor.systemGray3.cgColor
+        backgroundView.layer.borderWidth = 1/UIScreen.main.scale
+        
+        fix(this: blurEffectView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
+        
+        fix(this: backgroundView, into: blurEffectView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
+        
+        fix(this: closeButton, into: backgroundView, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
+        fix(this: fullScreenButton, into: backgroundView, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
         
     }
     
