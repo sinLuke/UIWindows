@@ -15,6 +15,13 @@ class UIWindowBarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        if closeButton.superview == nil {
+            self.addSubview(closeButton)
+        }
+        
+        if fullScreenButton.superview == nil {
+            self.addSubview(fullScreenButton)
+        }
         self.backgroundColor = UIColor.init(displayP3Red: 226/255, green: 226/255, blue: 226/255, alpha: 1.0)
         fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixLeading(leading: (config.barHeight - 18)/2, intrinsic: 18))
         fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixLeading(leading: (config.barHeight - 18)/2, intrinsic: 18))
@@ -57,19 +64,6 @@ class UIWindowBarView: UIView {
         
         return button
     }()
-    
-    override func layoutSublayers(of layer: CALayer) {
-        super.layoutSublayers(of: layer)
-        
-        if closeButton.superview == nil {
-            self.addSubview(closeButton)
-        }
-        
-        if fullScreenButton.superview == nil {
-            self.addSubview(fullScreenButton)
-        }
-        
-    }
     
     @objc func closeWindow(_ sander: UIButton) {
         windowDelegate?.closeWindow()
