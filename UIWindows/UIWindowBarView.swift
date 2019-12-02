@@ -15,14 +15,8 @@ class UIWindowBarView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        if closeButton.superview == nil {
-            self.addSubview(closeButton)
-        }
         
-        if fullScreenButton.superview == nil {
-            self.addSubview(fullScreenButton)
-        }
-        self.backgroundColor = UIColor.init(displayP3Red: 226/255, green: 226/255, blue: 226/255, alpha: 0.33)
+        
         fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
         fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixTrailing(trailing: -7.5, intrinsic: 18))
         
@@ -30,7 +24,11 @@ class UIWindowBarView: UIView {
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         self.addSubview(blurEffectView)
+        self.addSubview(closeButton)
+        self.addSubview(fullScreenButton)
+        
     }
     
     required init?(coder: NSCoder) {
