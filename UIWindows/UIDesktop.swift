@@ -85,23 +85,13 @@ public class UIDesktop: UIDesktopDelegate {
         window.heightConstant = window.heightAnchor.constraint(equalToConstant: 400)
         window.widthConstant = window.widthAnchor.constraint(equalToConstant: 300)
 
-        window.fullTop = window.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
-        window.fullBottom = window.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        window.fullLeft = window.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
-        window.fullRight = window.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
-
         let fullScreen = false
 
         window.topGap.isActive = !fullScreen
         window.leftGap.isActive = !fullScreen
         window.heightConstant.isActive = !fullScreen
         window.widthConstant.isActive = !fullScreen
-
-        window.fullTop.isActive = fullScreen
-        window.fullBottom.isActive = fullScreen
-        window.fullLeft.isActive = fullScreen
-        window.fullRight.isActive = fullScreen
-
+        
         view.layoutSubviews()
 
         self.set(focus: window)

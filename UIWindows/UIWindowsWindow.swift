@@ -24,11 +24,6 @@ public class UIWindowsWindow: UIView {
     var heightConstant: NSLayoutConstraint!
     var widthConstant: NSLayoutConstraint!
     
-    var fullTop: NSLayoutConstraint!
-    var fullBottom: NSLayoutConstraint!
-    var fullLeft: NSLayoutConstraint!
-    var fullRight: NSLayoutConstraint!
-    
     var oWidth: CGFloat = 0
     var oHeight: CGFloat = 0
     
@@ -174,22 +169,13 @@ public class UIWindowsWindow: UIView {
             if fullScreen {
                 print("fullScreen \(desktop?.view?.safeAreaInsets.top)")
 //                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: self.config.barHeight + (desktop?.view?.safeAreaInsets.top ?? 0), trailing: 0))
+                
                 fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 100, trailing: 0))
             } else {
+                
                 fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
             }
             
-            
-            
-            self.topGap.isActive = !fullScreen
-            self.leftGap.isActive = !fullScreen
-            self.heightConstant.isActive = !fullScreen
-            self.widthConstant.isActive = !fullScreen
-            
-            self.fullTop.isActive = fullScreen
-            self.fullBottom.isActive = fullScreen
-            self.fullLeft.isActive = fullScreen
-            self.fullRight.isActive = fullScreen
             
             UIView.animate(withDuration: 0.3) {
                 self.layoutSubviews()
