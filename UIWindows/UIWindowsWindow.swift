@@ -179,8 +179,7 @@ public class UIWindowsWindow: UIView {
             }
             
             UIView.animate(withDuration: 0.3) {
-                self.layoutSubviews()
-                
+                self.desktop?.view?.layoutSubviews()
             }
         }
     }
