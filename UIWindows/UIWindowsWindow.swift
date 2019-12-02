@@ -107,7 +107,7 @@ public class UIWindowsWindow: UIView {
 
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan))
 
-        self.addGestureRecognizer(panGesture)
+        windowBarView.addGestureRecognizer(panGesture)
 
     }
 
