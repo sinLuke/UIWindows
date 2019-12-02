@@ -81,7 +81,7 @@ public class UIWindowsWindow: UIView {
         
         containerView.backgroundColor = .systemBackground
         containerView.clipsToBounds = true
-        containerView.layer.cornerRadius = 6
+        containerView.layer.cornerRadius = 8
         containerView.layer.borderColor = UIColor.systemGray3.cgColor
         containerView.layer.borderWidth = 1/UIScreen.main.scale
         
