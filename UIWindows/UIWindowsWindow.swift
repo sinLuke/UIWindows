@@ -172,8 +172,8 @@ public class UIWindowsWindow: UIView {
                 backupPosition()
                 topGap.constant = (desktop?.view?.safeAreaInsets.top ?? 0)
                 leftGap.constant = 0
-                heightConstant.constant = desktop?.view?.frame.width ?? 300
-                widthConstant.constant = desktop?.view?.frame.height ?? 400 - (desktop?.view?.safeAreaInsets.top ?? 0)
+                heightConstant.constant = desktop?.view?.frame.height ?? 400 - (desktop?.view?.safeAreaInsets.top ?? 0)
+                widthConstant.constant = desktop?.view?.frame.width ?? 300
             } else {
                 recoverPosition()
             }
@@ -186,10 +186,12 @@ public class UIWindowsWindow: UIView {
     }
     
     func backupPosition(){
-        topGapBackup = topGap.constant
-        leftGapBackup = leftGap.constant
-        heightConstantBackup = heightConstant.constant
-        widthConstantBackup = widthConstant.constant
+        if !fullScreen {
+            topGapBackup = topGap.constant
+            leftGapBackup = leftGap.constant
+            heightConstantBackup = heightConstant.constant
+            widthConstantBackup = widthConstant.constant
+        }
     }
     
     func recoverPosition(){
@@ -229,6 +231,7 @@ public class UIWindowsWindow: UIView {
             case .ended:
                 desktop?.handlePan(end: self, offsetX: sander.translation(in: parentVC.view).x, offsetY: sander.translation(in: parentVC.view).y)
                 backupPosition()
+                if self.fullScreen {self.fullScreen = false}
                 self.layoutSubviews()
             default:
                 self.transform = .identity
