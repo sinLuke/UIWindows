@@ -175,7 +175,7 @@ public class UIWindowsWindow: UIView {
             
             if fullScreen {
                 print(self.safeAreaInsets.top)
-                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: self.config.barHeight + desktop?.view.safeAreaInsets.top ?? 0, trailing: 0))
+                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: self.config.barHeight + (desktop?.view?.safeAreaInsets.top ?? 0), trailing: 0))
             } else {
                 fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
             }
