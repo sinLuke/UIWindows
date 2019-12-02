@@ -10,7 +10,7 @@ import UIKit
 
 public struct UIWindowsConfig {
     
-    public static var defaultConfig = UIWindowsConfig(minHeight: 300.0, minWidth: 200.0, tintColor: .systemBlue, cornerAdjustRadius: 20.0, barHeight: 22.0, windowEdgeWidth: 0)
+    public static var defaultConfig = UIWindowsConfig(minHeight: 300.0, minWidth: 200.0, tintColor: .systemBlue, cornerAdjustRadius: 20.0, barHeight: 33.0, windowEdgeWidth: 0)
     
     public init(minHeight: CGFloat, minWidth: CGFloat, tintColor: UIColor, cornerAdjustRadius: CGFloat, barHeight: CGFloat, windowEdgeWidth: CGFloat) {
         self.minHeight = minHeight
