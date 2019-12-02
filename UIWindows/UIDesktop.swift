@@ -94,6 +94,7 @@ public class UIDesktop: UIDesktopDelegate {
         
         view.layoutSubviews()
 
+        window.backupPosition()
         self.set(focus: window)
     }
     
