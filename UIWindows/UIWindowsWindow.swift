@@ -158,12 +158,10 @@ public class UIWindowsWindow: UIView {
                 self.layer.shadowOpacity = 0.5
                 self.layer.shadowRadius = 30
                 self.layer.shadowOffset = CGSize(width: 0, height: 10)
-                self.childVC.view.alpha = 1.0
             } else {
                 self.layer.shadowOpacity = 0.2
                 self.layer.shadowRadius = 5
                 self.layer.shadowOffset = CGSize(width: 0, height: 3)
-                self.childVC.view.alpha = 0.4
             }
         }
     }
