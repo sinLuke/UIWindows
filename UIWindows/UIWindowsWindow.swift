@@ -88,7 +88,7 @@ public class UIWindowsWindow: UIView {
         self.layer.shadowRadius = 30
         self.layer.shadowOpacity = 0.5
         
-        self.addSubview(windowBarView)
+        containerView.addSubview(windowBarView)
         
         fix(this: windowBarView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
         
