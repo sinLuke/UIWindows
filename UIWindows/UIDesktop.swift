@@ -103,8 +103,6 @@ public class UIDesktop: UIDesktopDelegate {
     
     func handlePan(end window:UIWindowsWindow, offsetX: CGFloat, offsetY: CGFloat) {
         
-        print(offsetY)
-        
         guard let view = self.view else {
             return
         }

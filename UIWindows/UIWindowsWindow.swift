@@ -228,8 +228,8 @@ public class UIWindowsWindow: UIView {
                 desktop?.handlePan(changed: self, offsetX: sander.translation(in: parentVC.view).x, offsetY: sander.translation(in: parentVC.view).y)
             case .ended:
                 desktop?.handlePan(end: self, offsetX: sander.translation(in: parentVC.view).x, offsetY: sander.translation(in: parentVC.view).y)
-                self.fullScreen = false
                 backupPosition()
+                self.layoutSubviews()
             default:
                 self.transform = .identity
             }
