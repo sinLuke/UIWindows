@@ -124,7 +124,7 @@ public class UIDesktop: UIDesktopDelegate {
             topGapConstant = 0
         }
         
-        let maxHeight = view.frame.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - window.barGestureView.frame.height
+        let maxHeight = view.frame.height - view.safeAreaInsets.bottom - view.safeAreaInsets.top - window.config.barHeight
         
         if topGapConstant > maxHeight {
             topGapConstant = maxHeight

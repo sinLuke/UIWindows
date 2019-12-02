@@ -10,7 +10,7 @@ import UIKit
 
 class UIWindowsNavigationController: UINavigationController {
     
-    var draggableDelegate: UIWindowsWindowDelegate? = nil
+    var windowDelegate: UIWindowsDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,11 @@ class UIWindowsNavigationController: UINavigationController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(closeWindow))
+
     }
 
     @objc func closeWindow(){
-        draggableDelegate?.closeWindow()
+
     }
 
     /*

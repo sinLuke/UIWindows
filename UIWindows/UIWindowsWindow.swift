@@ -8,11 +8,13 @@
 
 import UIKit
 
-protocol UIWindowsWindowDelegate {
+protocol UIWindowsDelegate {
     func closeWindow()
+    func enterfullscreen()
+    func exitfullscreen()
 }
 
-public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
+public class UIWindowsWindow: UIView {
     
     var config: UIWindowsConfig
     
@@ -42,8 +44,6 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
     var leftBotView = UIView()
     var rightTopView = UIView()
     var rightBotView = UIView()
-    
-    var barGestureView: UIView!
     
     let containerView = UIView()
     var navigationVC = UIWindowsNavigationController()
@@ -77,7 +77,7 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
         
         containerView.backgroundColor = .systemBackground
         containerView.clipsToBounds = true
-        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerRadius = 6
         containerView.layer.borderColor = UIColor.systemGray3.cgColor
         containerView.layer.borderWidth = 1/UIScreen.main.scale
         
@@ -91,33 +91,24 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
             
             fix(this: childNVC.view, into: containerView, horizontal: .fill(leading: 1, trailing: 1), vertical: .fill(leading: 22, trailing: 1))
             
-            self.barGestureView = childNVC.navigationBar
-            
         } else {
             navigationVC = UIWindowsNavigationController(rootViewController: childVC)
             containerView.addSubview(navigationVC.view)
             
-            
             fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 1, trailing: 1), vertical: .fill(leading: 22, trailing: 1))
             
-            self.barGestureView = navigationVC.navigationBar
-            
-            navigationVC.draggableDelegate = self
+            navigationVC.windowDelegate = self
         }
-        
-        
-                
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan))
-        
-        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
-        
-        doubleTapGesture.numberOfTapsRequired = 2
 
-        barGestureView.addGestureRecognizer(panGesture)
-        barGestureView.addGestureRecognizer(doubleTapGesture)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePan))
+
+        self.addGestureRecognizer(panGesture)
 
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func getPreview() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, 0.0)
@@ -174,6 +165,12 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
             
             self.frame = CGRect(x: self.leftGap.constant, y: self.topGap.constant, width: self.widthConstant.constant, height: self.heightConstant.constant)
             
+            if fullScreen {
+                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
+            } else {
+                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 1, trailing: 1), vertical: .fill(leading: 22, trailing: 1))
+            }
+            
             
             
             self.topGap.isActive = !fullScreen
@@ -206,29 +203,6 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
     
     func set(viewControllerMoveTo parent: UIViewController) {
         self.childVC.didMove(toParent: parent)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    @objc func handleTap(_ sander: UITapGestureRecognizer){
-        if sander.state == .recognized {
-            self.fullScreen = !self.fullScreen
-        }
-    }
-    func closeWindow(){
-        if self.fullScreen {
-            self.fullScreen = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.removeFromSuperview()
-                self.desktop?.remove(window: self)
-                self.childVC.navigationController?.removeFromParent()
-            }
-        } else {
-            self.removeFromSuperview()
-            self.desktop?.remove(window: self)
-            self.childVC.navigationController?.removeFromParent()
-        }
     }
     
     func handle(touchEvent: UIWindowsWindow.TouchEvent, from sander: UIPanGestureRecognizer) {
@@ -348,5 +322,31 @@ public class UIWindowsWindow: UIView, UIWindowsWindowDelegate {
         fix(this: rightBotView, into: self, horizontal: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius), vertical: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius))
         
         fix(this: rightTopView, into: self, horizontal: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius), vertical: .fixLeading(leading: 0, intrinsic: config.cornerAdjustRadius))
+    }
+}
+
+
+extension UIWindowsWindow: UIWindowsDelegate {
+    func enterfullscreen(){
+        self.fullScreen = true
+    }
+    
+    func exitfullscreen(){
+        self.fullScreen = false
+    }
+    
+    func closeWindow(){
+        if self.fullScreen {
+            self.fullScreen = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.removeFromSuperview()
+                self.desktop?.remove(window: self)
+                self.childVC.navigationController?.removeFromParent()
+            }
+        } else {
+            self.removeFromSuperview()
+            self.desktop?.remove(window: self)
+            self.childVC.navigationController?.removeFromParent()
+        }
     }
 }

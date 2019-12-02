@@ -58,11 +58,11 @@
 			children = (
 				A3261423232E033700D2740B /* UIDesktop.swift */,
 				A3261420232E033700D2740B /* UIWindowsNavigationController.swift */,
+				02B85D3723954D98002188C4 /* UIWindowsConfig.swift */,
 				A3261421232E033700D2740B /* UIWindowsWindow.swift */,
 				A3261422232E033700D2740B /* UIWindowView.swift */,
 				A3F054DD232DE39E00B0BC8C /* UIWindows.h */,
 				A3F054DE232DE39E00B0BC8C /* Info.plist */,
-				02B85D3723954D98002188C4 /* UIWindowsConfig.swift */,
 			);
 			path = UIWindows;
 			sourceTree = "<group>";
