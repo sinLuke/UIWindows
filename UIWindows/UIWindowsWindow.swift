@@ -46,7 +46,7 @@ public class UIWindowsWindow: UIView {
     var rightBotView = UIView()
     
     let containerView = UIView()
-    let windowBarView = UIWindowBarView()
+    let windowBarView = UIWindowBarView(frame: CGRect(x: 0, y: 0, width: 100, height: 22))
     var navigationVC = UIWindowsNavigationController()
     
     var childVC: UIViewController
