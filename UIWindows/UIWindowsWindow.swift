@@ -46,6 +46,7 @@ public class UIWindowsWindow: UIView {
     var rightBotView = UIView()
     
     let containerView = UIView()
+    let windowBarView = UIWindowBarView()
     var navigationVC = UIWindowsNavigationController()
     
     var childVC: UIViewController
@@ -75,6 +76,8 @@ public class UIWindowsWindow: UIView {
 
         fix(this: containerView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
         
+        fix(this: windowBarView, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fixLeading(leading: 0, intrinsic: self.config.barHeight))
+        
         containerView.backgroundColor = .systemBackground
         containerView.clipsToBounds = true
         containerView.layer.cornerRadius = 6
@@ -89,13 +92,13 @@ public class UIWindowsWindow: UIView {
         if let childNVC = childVC as? UINavigationController {
             containerView.addSubview(childNVC.view)
             
-            fix(this: childNVC.view, into: containerView, horizontal: .fill(leading: 1, trailing: 1), vertical: .fill(leading: 22, trailing: 1))
+            fix(this: childNVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
             
         } else {
             navigationVC = UIWindowsNavigationController(rootViewController: childVC)
             containerView.addSubview(navigationVC.view)
             
-            fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 1, trailing: 1), vertical: .fill(leading: 22, trailing: 1))
+            fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
             
             navigationVC.windowDelegate = self
         }
@@ -168,7 +171,7 @@ public class UIWindowsWindow: UIView {
             if fullScreen {
                 fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
             } else {
-                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 1, trailing: 1), vertical: .fill(leading: 22, trailing: 1))
+                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
             }
             
             
@@ -315,13 +318,13 @@ public class UIWindowsWindow: UIView {
         rightBotView.backgroundColor = .clear
         rightTopView.backgroundColor = .clear
         
-        fix(this: leftTopView, into: self, horizontal: .fixLeading(leading: 0, intrinsic: config.cornerAdjustRadius), vertical: .fixLeading(leading: 0, intrinsic: 20))
+        fix(this: leftTopView, into: self, horizontal: .fixLeading(leading: 0, intrinsic: config.cornerResponsRadius), vertical: .fixLeading(leading: 0, intrinsic: config.cornerResponsRadius))
         
-        fix(this: leftBotView, into: self, horizontal: .fixLeading(leading: 0, intrinsic: config.cornerAdjustRadius), vertical: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius))
+        fix(this: leftBotView, into: self, horizontal: .fixLeading(leading: 0, intrinsic: config.cornerResponsRadius), vertical: .fixTrailing(trailing: 0, intrinsic: config.cornerResponsRadius))
         
-        fix(this: rightBotView, into: self, horizontal: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius), vertical: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius))
+        fix(this: rightBotView, into: self, horizontal: .fixTrailing(trailing: 0, intrinsic: config.cornerResponsRadius), vertical: .fixTrailing(trailing: 0, intrinsic: config.cornerResponsRadius))
         
-        fix(this: rightTopView, into: self, horizontal: .fixTrailing(trailing: 0, intrinsic: config.cornerAdjustRadius), vertical: .fixLeading(leading: 0, intrinsic: config.cornerAdjustRadius))
+        fix(this: rightTopView, into: self, horizontal: .fixTrailing(trailing: 0, intrinsic: config.cornerResponsRadius), vertical: .fixLeading(leading: 0, intrinsic: config.cornerResponsRadius))
     }
 }
 
