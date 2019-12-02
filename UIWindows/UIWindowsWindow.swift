@@ -170,11 +170,11 @@ public class UIWindowsWindow: UIView {
     
     private var fullScreen: Bool = false {
         didSet {
-            
+                    
             self.frame = CGRect(x: self.leftGap.constant, y: self.topGap.constant, width: self.widthConstant.constant, height: self.heightConstant.constant)
             
             if fullScreen {
-                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
+                fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: self.config.barHeight + (UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0), trailing: 0))
             } else {
                 fix(this: navigationVC.view, into: containerView, horizontal: .fill(leading: self.config.windowEdgeWidth, trailing: self.config.windowEdgeWidth), vertical: .fill(leading: self.config.barHeight, trailing: self.config.windowEdgeWidth))
             }

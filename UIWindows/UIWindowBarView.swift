@@ -11,12 +11,13 @@ import UIKit
 class UIWindowBarView: UIView {
     
     var windowDelegate: UIWindowsDelegate?
-    
     var config = UIWindowsConfig.defaultConfig
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.init(displayP3Red: 226/255, green: 226/255, blue: 226/255, alpha: 1.0)
+        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixLeading(leading: (config.barHeight - 18)/2, intrinsic: 18))
+        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixLeading(leading: (config.barHeight - 18)/2, intrinsic: 18))
     }
     
     required init?(coder: NSCoder) {
@@ -68,12 +69,6 @@ class UIWindowBarView: UIView {
             self.addSubview(fullScreenButton)
         }
         
-    }
-    
-    override public func draw(_ rect: CGRect) {
-        
-        fix(this: closeButton, into: self, horizontal: .fixLeading(leading: 12, intrinsic: 18), vertical: .fixLeading(leading: (config.barHeight - 18)/2, intrinsic: 18))
-        fix(this: fullScreenButton, into: self, horizontal: .fixLeading(leading: 42, intrinsic: 18), vertical: .fixLeading(leading: (config.barHeight - 18)/2, intrinsic: 18))
     }
     
     @objc func closeWindow(_ sander: UIButton) {
