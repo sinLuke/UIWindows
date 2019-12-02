@@ -75,7 +75,7 @@ public class UIDesktop: UIDesktopDelegate {
         windows.append(window)
         
         view.addSubview(window)
-        parentVC?.addChild(window.navigationVC)
+        parentVC?.addChild(window.childVC)
         window.parentVC = parentVC
         window.desktop = self
         window.translatesAutoresizingMaskIntoConstraints = false
