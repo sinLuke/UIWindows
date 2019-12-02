@@ -169,19 +169,13 @@ public class UIWindowsWindow: UIView {
     private var fullScreen: Bool = false {
         didSet {
             if fullScreen {
-                topGapBackup = topGap.constant
-                leftGapBackup = leftGap.constant
-                heightConstantBackup = heightConstant.constant
-                widthConstantBackup = widthConstant.constant
+                backupPosition()
                 topGap.constant = (desktop?.view?.safeAreaInsets.top ?? 0)
                 leftGap.constant = 0
                 heightConstant.constant = desktop?.view?.frame.width ?? 300
                 widthConstant.constant = desktop?.view?.frame.height ?? 400 - (desktop?.view?.safeAreaInsets.top ?? 0)
             } else {
-                topGap.constant = topGapBackup ?? 0
-                leftGap.constant = leftGapBackup ?? 0
-                heightConstant.constant = heightConstantBackup ?? 300
-                widthConstant.constant = widthConstantBackup ?? 400
+                recoverPosition()
             }
             
             UIView.animate(withDuration: 0.3) {
@@ -189,6 +183,20 @@ public class UIWindowsWindow: UIView {
                 
             }
         }
+    }
+    
+    func backupPosition(){
+        topGapBackup = topGap.constant
+        leftGapBackup = leftGap.constant
+        heightConstantBackup = heightConstant.constant
+        widthConstantBackup = widthConstant.constant
+    }
+    
+    func recoverPosition(){
+        topGap.constant = topGapBackup ?? 0
+        leftGap.constant = leftGapBackup ?? 0
+        heightConstant.constant = heightConstantBackup ?? 300
+        widthConstant.constant = widthConstantBackup ?? 400
     }
     
     func set(constraint top: CGFloat, left: CGFloat, superView: UIView) {
@@ -214,11 +222,14 @@ public class UIWindowsWindow: UIView {
         switch touchEvent {
         case .moveWindow:
             switch sander.state {
+            case .began:
+                backupPosition()
             case .changed:
                 desktop?.handlePan(changed: self, offsetX: sander.translation(in: parentVC.view).x, offsetY: sander.translation(in: parentVC.view).y)
             case .ended:
                 desktop?.handlePan(end: self, offsetX: sander.translation(in: parentVC.view).x, offsetY: sander.translation(in: parentVC.view).y)
                 self.fullScreen = false
+                backupPosition()
             default:
                 self.transform = .identity
             }
@@ -229,6 +240,7 @@ public class UIWindowsWindow: UIView {
             case .began:
                 oWidth = widthConstant.constant
                 oHeight = heightConstant.constant
+                backupPosition()
             case .changed:
                 self.nWidth = oWidth + sander.translation(in: self).x * (left ? (-1) : (1))
                 self.nHeight = oHeight + sander.translation(in: self).y * (top ? (-1) : (1))
@@ -260,6 +272,7 @@ public class UIWindowsWindow: UIView {
                 self.layoutSubviews()
             case .ended:
                 desktop?.handlePan(end: self, offsetX: left ? offsetX : 0, offsetY: top ? offsetY : 0)
+                backupPosition()
                 self.layoutSubviews()
             default:
                 self.transform = .identity
