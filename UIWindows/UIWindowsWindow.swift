@@ -8,10 +8,11 @@
 
 import UIKit
 
-protocol UIWindowsDelegate {
+protocol UIWindowsDelegate: AnyClass {
     func closeWindow()
     func enterfullscreen()
     func exitfullscreen()
+    func toggleFullScreen()
 }
 
 public class UIWindowsWindow: UIView {
@@ -353,5 +354,9 @@ extension UIWindowsWindow: UIWindowsDelegate {
             self.desktop?.remove(window: self)
             self.childVC.navigationController?.removeFromParent()
         }
+    }
+    
+    func toggleFullScreen() {
+        self.fullScreen = !self.fullScreen
     }
 }
