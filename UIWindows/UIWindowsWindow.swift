@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UIWindowsDelegate: AnyClass {
+protocol UIWindowsDelegate {
     func closeWindow()
     func enterfullscreen()
     func exitfullscreen()
