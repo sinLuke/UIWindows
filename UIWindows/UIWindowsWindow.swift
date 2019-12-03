@@ -360,9 +360,7 @@ extension UIWindowsWindow: UIWindowsDelegate {
                 
             }
         } else {
-            self.removeFromSuperview()
             self.desktop?.remove(window: self)
-            self.childVC.navigationController?.removeFromParent()
         }
     }
     
