@@ -17,7 +17,7 @@ public protocol UIWindowsDelegate {
 
 public class UIWindowsWindow: UIView {
     
-    var config: UIWindowsConfig
+    public var config: UIWindowsConfig
     
     var topGap: NSLayoutConstraint!
     var leftGap: NSLayoutConstraint!
@@ -28,6 +28,12 @@ public class UIWindowsWindow: UIView {
     var leftGapBackup: CGFloat?
     var heightConstantBackup: CGFloat?
     var widthConstantBackup: CGFloat?
+    
+    public var title: String = "" {
+        didSet {
+            titleLabel.text = title
+        }
+    }
     
     var oWidth: CGFloat = 0
     var oHeight: CGFloat = 0
@@ -45,11 +51,12 @@ public class UIWindowsWindow: UIView {
     var leftBotView = UIView()
     var rightTopView = UIView()
     var rightBotView = UIView()
+    var titleLabel = UILabel()
     
     let containerView = UIView()
     let windowBarView = UIWindowBarView(frame: CGRect(x: 0, y: 0, width: 100, height: 22))
     
-    var childVC: UIViewController
+    public var childVC: UIViewController
     weak var parentVC: UIViewController?
     weak var desktop: UIDesktop?
     
@@ -74,6 +81,9 @@ public class UIWindowsWindow: UIView {
         self.backgroundColor = .clear
         containerView.addSubview(windowBarView)
         windowBarView.windowDelegate = self
+        windowBarView.addSubview(titleLabel)
+        fix(this: titleLabel, into: windowBarView, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
+        titleLabel.textAlignment = .center
         self.setUpCornerGestureView()
 
         fix(this: containerView, into: self, horizontal: .fill(leading: 0, trailing: 0), vertical: .fill(leading: 0, trailing: 0))
