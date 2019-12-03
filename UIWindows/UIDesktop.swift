@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol UIDesktopDelegate {
+@objc public protocol UIDesktopDelegate {
     @objc optional func destop(desktop: UIDesktop, shouldClose window: UIWindowsWindow) -> Bool
     @objc optional func destop(desktop: UIDesktop, didClose window: UIWindowsWindow)
     @objc optional func destop(desktop: UIDesktop, shouldFocusOn window: UIWindowsWindow) -> Bool
@@ -23,7 +23,7 @@ import UIKit
     weak var view: UIView?
     weak var parentVC: UIViewController?
     private var windows: [UIWindowsWindow] = []
-    var delegate: UIDesktopDelegate?
+    public var delegate: UIDesktopDelegate?
     
     public init(makeViewControllerAsDesktop viewController: UIViewController) {
         self.parentVC = viewController
