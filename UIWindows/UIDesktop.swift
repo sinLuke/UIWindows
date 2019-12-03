@@ -8,17 +8,22 @@
 
 import UIKit
 
-protocol UIDesktopDelegate {
-    func getNumOfWindow() -> Int
-    func getWindow(at index: Int) -> UIWindowsWindow
-    func set(focus window: UIWindowsWindow)
+@objc protocol UIDesktopDelegate {
+    @objc optional func destop(desktop: UIDesktop, shouldClose window: UIWindowsWindow) -> Bool
+    @objc optional func destop(desktop: UIDesktop, didClose window: UIWindowsWindow)
+    @objc optional func destop(desktop: UIDesktop, shouldFocusOn window: UIWindowsWindow) -> Bool
+    @objc optional func destop(desktop: UIDesktop, didFocusOn window: UIWindowsWindow)
+    @objc optional func destop(desktop: UIDesktop, shouldRemoveFocusOn window: UIWindowsWindow) -> Bool
+    @objc optional func destop(desktop: UIDesktop, didRemoveFocusOn window: UIWindowsWindow)
+    @objc optional func destop(desktop: UIDesktop, didAdd window: UIWindowsWindow)
 }
 
-public class UIDesktop: UIDesktopDelegate {
+@objc public class UIDesktop: NSObject {
 
     weak var view: UIView?
     weak var parentVC: UIViewController?
     private var windows: [UIWindowsWindow] = []
+    var delegate: UIDesktopDelegate?
     
     public init(makeViewControllerAsDesktop viewController: UIViewController) {
         self.parentVC = viewController
@@ -35,7 +40,10 @@ public class UIDesktop: UIDesktopDelegate {
     
     public func closeAllWindows(){
         for w in windows {
-            w.closeWindow()
+            if delegate?.destop?(desktop: self, shouldClose: w) ?? true {
+                w.closeWindow()
+                delegate?.destop?(desktop: self, didClose: w)
+            }
         }
     }
     
@@ -43,9 +51,21 @@ public class UIDesktop: UIDesktopDelegate {
         if windows.contains(window) {
             for w in windows {
                 if w == window {
-                    w.set(focus: true)
+                    if delegate?.destop?(desktop: self, shouldFocusOn: w) ?? true {
+                        w.set(focus: true)
+                        delegate?.destop?(desktop: self, didFocusOn: w)
+                        return
+                    }
+                    
                 } else {
-                    w.set(focus: false)
+                    if w.isFocused {
+                        if delegate?.destop?(desktop: self, shouldRemoveFocusOn: w) ?? true {
+                            w.set(focus: false)
+                            delegate?.destop?(desktop: self, didRemoveFocusOn: w)
+                        } else {
+                            return
+                        }
+                    }
                 }
             }
         }
@@ -54,7 +74,11 @@ public class UIDesktop: UIDesktopDelegate {
     public func remove(window: UIWindowsWindow) {
         for i in 0..<self.windows.count {
             if i < self.windows.count, self.windows[i] == window {
-                self.windows.remove(at: i)
+                if delegate?.destop?(desktop: self, shouldClose: self.windows[i]) ?? true {
+                    let w = self.windows.remove(at: i)
+                    delegate?.destop?(desktop: self, didClose: w)
+                }
+                
             }
         }
         if windows.count >= 1 {
@@ -96,6 +120,8 @@ public class UIDesktop: UIDesktopDelegate {
 
         window.backupPosition()
         self.set(focus: window)
+        
+        delegate?.destop?(desktop: self, didAdd: window)
     }
     
     func handlePan(changed window:UIWindowsWindow, offsetX: CGFloat, offsetY: CGFloat) {
