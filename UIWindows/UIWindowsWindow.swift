@@ -355,9 +355,9 @@ extension UIWindowsWindow: UIWindowsDelegate {
         if self.fullScreen {
             self.fullScreen = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.removeFromSuperview()
+                
                 self.desktop?.remove(window: self)
-                self.childVC.navigationController?.removeFromParent()
+                
             }
         } else {
             self.removeFromSuperview()

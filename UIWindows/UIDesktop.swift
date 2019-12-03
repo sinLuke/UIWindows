@@ -76,6 +76,8 @@ import UIKit
             if i < self.windows.count, self.windows[i] == window {
                 if delegate?.destop?(desktop: self, shouldClose: self.windows[i]) ?? true {
                     let w = self.windows.remove(at: i)
+                    w.removeFromSuperview()
+                    w.childVC.navigationController?.removeFromParent()
                     delegate?.destop?(desktop: self, didClose: w)
                 }
                 
