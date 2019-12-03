@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol UIWindowsDelegate {
+public protocol UIWindowsDelegate {
     func closeWindow()
     func enterfullscreen()
     func exitfullscreen()
@@ -333,15 +333,15 @@ public class UIWindowsWindow: UIView {
 
 
 extension UIWindowsWindow: UIWindowsDelegate {
-    func enterfullscreen(){
+    public func enterfullscreen(){
         self.fullScreen = true
     }
     
-    func exitfullscreen(){
+    public func exitfullscreen(){
         self.fullScreen = false
     }
     
-    func closeWindow(){
+    public func closeWindow(){
         if self.fullScreen {
             self.fullScreen = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -356,7 +356,7 @@ extension UIWindowsWindow: UIWindowsDelegate {
         }
     }
     
-    func toggleFullScreen() {
+    public func toggleFullScreen() {
         self.fullScreen = !self.fullScreen
     }
 }
